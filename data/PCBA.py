@@ -5,10 +5,9 @@ from torch.utils.data import Dataset
 import random as rd
 from ogb.graphproppred import Evaluator
 
-
+import dgl
 from scipy import sparse as sp
 import numpy as np
-import itertools
 import torch.utils.data
 import pandas as pd
 import shutil, os
@@ -16,7 +15,10 @@ import os.path as osp
 from dgl.data.utils import load_graphs, save_graphs, Subset
 from ogb.utils.url import decide_download, download_url, extract_zip
 from ogb.io.read_graph_dgl import read_csv_graph_dgl
-import gc
+import os
+import networkx as nx
+import hashlib
+
 
 
 def self_loop(g):
