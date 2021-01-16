@@ -342,9 +342,6 @@ def main():
     if args.wl_pos_enc is not None:
         net_params['wl_pos_enc'] = True if args.pos_enc == 'True' else False
 
-    # ZINC
-    net_params['num_atom_type'] = dataset.num_atom_type
-    net_params['num_bond_type'] = dataset.num_bond_type
 
     root_log_dir = out_dir + 'logs/' + MODEL_NAME + "_" + DATASET_NAME + "_GPU" + str(
         config['gpu']['id']) + "_" + time.strftime('%Hh%Mm%Ss_on_%b_%d_%Y')
