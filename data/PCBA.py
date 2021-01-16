@@ -57,6 +57,7 @@ def make_full_graph(g):
     full_g = dgl.from_networkx(nx.complete_graph(g.number_of_nodes()))
     full_g.ndata['feat'] = g.ndata['feat']
     full_g.edata['feat'] = torch.zeros(full_g.number_of_edges()).long()
+    full_g.ndata['lap_pos_enc'] = g.ndata['lap_pos_enc']
     return full_g
 
 

@@ -85,17 +85,17 @@ def train_val_pipeline(MODEL_NAME, dataset, params, net_params, dirs):
     per_epoch_time = []
         
     DATASET_NAME = dataset.name
-    
-    if net_params['full_graph']:
-        print("[!] Converting the given graphs to full graphs..")
-        dataset._make_full_graph()
-        print('Time taken to convert to full graphs:',time.time()-t0)
-    
+
     if net_params['lap_pos_enc']:
         st = time.time()
         print("[!] Adding Laplacian positional encoding.")
         dataset._add_laplacian_positional_encodings(net_params['pos_enc_dim'])
-        print('Time LapPE:',time.time()-st)
+        print('Time LapPE:', time.time() - st)
+
+    if net_params['full_graph']:
+        print("[!] Converting the given graphs to full graphs..")
+        dataset._make_full_graph()
+        print('Time taken to convert to full graphs:',time.time()-t0)
         
     if net_params['wl_pos_enc']:
         st = time.time()
