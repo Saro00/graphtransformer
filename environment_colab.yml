@@ -3,8 +3,7 @@ channels:
 - dglteam
 - conda-forge
 - fragcolor
-- defaults
-- anaconda
+
 
 dependencies:
 - cuda10.0
