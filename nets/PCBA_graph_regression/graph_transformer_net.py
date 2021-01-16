@@ -53,7 +53,7 @@ class GraphTransformerNet(nn.Module):
         self.layers.append(
             GraphTransformerLayer(hidden_dim, out_dim, num_heads, dropout, self.layer_norm, self.batch_norm,
                                   self.residual))
-        self.MLP_layer = MLPReadout(out_dim, 128)  # 1 out dim since regression problem
+        self.MLP_layer = MLPReadout(out_dim, 128)  # 128 out dim since regression problem
 
     def forward(self, g, h, e, h_lap_pos_enc=None, h_wl_pos_enc=None):
 
