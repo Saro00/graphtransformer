@@ -306,9 +306,8 @@ class PCBADataset(Dataset):
         # The input samples is a list of pairs (graph, label).
         # The input samples is a list of pairs (graph, label).
         graphs, labels = map(list, zip(*samples))
-        labels = torch.tensor(np.array(labels)).unsqueeze(1)
+        labels = torch.cat([label.unsqueeze(0) for label in labels])
         batched_graph = dgl.batch(graphs)
-
         return batched_graph, labels
 
     def _add_self_loops(self):
