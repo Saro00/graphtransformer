@@ -42,7 +42,8 @@ def train_epoch(model, optimizer, device, data_loader, epoch):
             batch_wl_pos_enc = None
 
         batch_scores = model.forward(batch_graphs, batch_x, batch_e, batch_lap_pos_enc, batch_wl_pos_enc)
-        loss = model.loss(batch_scores, batch_targets)
+        is_labeled = batch_targets == batch_targets
+        loss = model.loss(batch_scores[is_labeled], batch_targets.float()[is_labeled])
         loss.backward()
         optimizer.step()
         epoch_loss += loss.detach().item()
@@ -82,7 +83,8 @@ def evaluate_network(model, device, data_loader, epoch):
                 batch_wl_pos_enc = None
 
             batch_scores = model.forward(batch_graphs, batch_x, batch_e, batch_lap_pos_enc, batch_wl_pos_enc)
-            loss = model.loss(batch_scores, batch_targets)
+            is_labeled = batch_targets == batch_targets
+            loss = model.loss(batch_scores[is_labeled], batch_targets.float()[is_labeled])
             epoch_test_loss += loss.detach().item()
             list_scores.append(batch_scores.detach().cpu())
             list_labels.append(batch_targets.detach().cpu())
