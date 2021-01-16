@@ -3,6 +3,7 @@
 """
 from data.molecules import MoleculeDataset
 from data.SBMs import SBMsDataset
+from data.PCBA import PCBADataset
 
 def LoadData(DATASET_NAME):
     """
@@ -18,4 +19,7 @@ def LoadData(DATASET_NAME):
     SBM_DATASETS = ['SBM_CLUSTER', 'SBM_PATTERN']
     if DATASET_NAME in SBM_DATASETS: 
         return SBMsDataset(DATASET_NAME)
+    # handling for (PCBA) molecule dataset
+    if DATASET_NAME == 'PCBA':
+        return PCBADataset(DATASET_NAME)
     
