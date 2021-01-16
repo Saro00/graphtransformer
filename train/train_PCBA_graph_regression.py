@@ -52,10 +52,6 @@ def train_epoch(model, optimizer, device, data_loader, epoch):
 
     epoch_loss /= (iter + 1)
     evaluator = Evaluator(name='ogbg-molpcba')
-    print(torch.cat(list_scores).size())
-    print(torch.cat(list_labels).size())
-    print(torch.cat(list_scores))
-    print(torch.cat(list_labels))
     epoch_train_AP = evaluator.eval({'y_pred': torch.cat(list_scores), 'y_true': torch.cat(list_labels)})['ap']
 
     return epoch_loss, epoch_train_AP, optimizer
